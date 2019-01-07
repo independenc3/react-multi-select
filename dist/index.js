@@ -146,7 +146,8 @@ var MultiSelect = function (_Component) {
                 filterOptions = _props3.filterOptions,
                 shouldToggleOnHover = _props3.shouldToggleOnHover,
                 hasSelectAll = _props3.hasSelectAll,
-                overrideStrings = _props3.overrideStrings;
+                overrideStrings = _props3.overrideStrings,
+                arrowRenderer = _props3.arrowRenderer;
 
 
             return _react2.default.createElement(
@@ -158,6 +159,7 @@ var MultiSelect = function (_Component) {
                         isLoading: isLoading,
                         contentComponent: _selectPanel2.default,
                         shouldToggleOnHover: shouldToggleOnHover,
+                        arrowRenderer: arrowRenderer,
                         contentProps: {
                             ItemRenderer: ItemRenderer,
                             options: options,

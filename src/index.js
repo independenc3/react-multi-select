@@ -114,6 +114,7 @@ class MultiSelect extends Component<Props> {
             shouldToggleOnHover,
             hasSelectAll,
             overrideStrings,
+            arrowRenderer,
         } = this.props;
 
         return <div className="multi-select">
@@ -121,6 +122,7 @@ class MultiSelect extends Component<Props> {
                 isLoading={isLoading}
                 contentComponent={SelectPanel}
                 shouldToggleOnHover={shouldToggleOnHover}
+                arrowRenderer={arrowRenderer}
                 contentProps={{
                     ItemRenderer,
                     options,

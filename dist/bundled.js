@@ -488,7 +488,8 @@ var Dropdown = function (_Component) {
             var _props2 = this.props,
                 children = _props2.children,
                 isLoading = _props2.isLoading,
-                disabled = _props2.disabled;
+                disabled = _props2.disabled,
+                arrowRenderer = _props2.arrowRenderer;
 
 
             var expandedHeaderStyle = expanded ? styles.dropdownHeaderExpanded : undefined;
@@ -496,8 +497,6 @@ var Dropdown = function (_Component) {
             var focusedHeaderStyle = hasFocus ? styles.dropdownHeaderFocused : undefined;
 
             var arrowStyle = expanded ? styles.dropdownArrowUp : styles.dropdownArrowDown;
-
-            var focusedArrowStyle = hasFocus ? styles.dropdownArrowDownFocused : undefined;
 
             var headingStyle = _extends({}, styles.dropdownChildren, disabled ? styles.disabledDropdownChildren : {});
 
@@ -545,14 +544,13 @@ var Dropdown = function (_Component) {
                         },
                         isLoading && _react2.default.createElement(_loadingIndicator2.default, null)
                     ),
-                    _react2.default.createElement(
+                    arrowRenderer ? arrowRenderer() : _react2.default.createElement(
                         'span',
                         {
                             className: 'dropdown-heading-dropdown-arrow',
                             style: styles.dropdownArrow
                         },
-                        _react2.default.createElement('span', { style: _extends({}, arrowStyle, focusedArrowStyle)
-                        })
+                        _react2.default.createElement('i', { style: arrowStyle })
                     )
                 ),
                 expanded && this.renderPanel()
@@ -586,9 +584,7 @@ var styles = {
         width: 0,
         position: 'relative'
     },
-    dropdownArrowDownFocused: {
-        borderColor: focusColor + ' transparent transparent'
-    },
+    dropdownArrowDownFocused: {},
     dropdownArrowUp: {
         boxSizing: 'border-box',
         top: '-2px',
@@ -606,7 +602,7 @@ var styles = {
         color: '#333',
         left: 0,
         lineHeight: '34px',
-        paddingLeft: 10,
+        paddingLeft: 20,
         paddingRight: 10,
         position: 'absolute',
         right: 0,
@@ -626,18 +622,13 @@ var styles = {
     },
     dropdownHeader: {
         boxSizing: 'border-box',
-        backgroundColor: '#fff',
-        borderColor: '#d9d9d9 #ccc #b3b3b3',
-        borderRadius: 4,
-        borderBottomRightRadius: 4,
-        borderBottomLeftRadius: 4,
-        border: '1px solid #ccc',
-        color: '#333',
+        backgroundColor: '#f6f6f6',
+        color: '#c8c8c8',
         cursor: 'default',
         display: 'table',
         borderSpacing: 0,
         borderCollapse: 'separate',
-        height: 36,
+        height: 42,
         outline: 'none',
         overflow: 'hidden',
         position: 'relative',
@@ -1096,7 +1087,8 @@ var MultiSelect = function (_Component) {
                 filterOptions = _props3.filterOptions,
                 shouldToggleOnHover = _props3.shouldToggleOnHover,
                 hasSelectAll = _props3.hasSelectAll,
-                overrideStrings = _props3.overrideStrings;
+                overrideStrings = _props3.overrideStrings,
+                arrowRenderer = _props3.arrowRenderer;
 
 
             return _react2.default.createElement(
@@ -1108,6 +1100,7 @@ var MultiSelect = function (_Component) {
                         isLoading: isLoading,
                         contentComponent: _selectPanel2.default,
                         shouldToggleOnHover: shouldToggleOnHover,
+                        arrowRenderer: arrowRenderer,
                         contentProps: {
                             ItemRenderer: ItemRenderer,
                             options: options,

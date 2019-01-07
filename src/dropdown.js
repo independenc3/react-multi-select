@@ -128,7 +128,7 @@ class Dropdown extends Component<Props, State> {
 
     render() {
         const {expanded, hasFocus} = this.state;
-        const {children, isLoading, disabled} = this.props;
+        const {children, isLoading, disabled, arrowRenderer} = this.props;
 
         const expandedHeaderStyle = expanded
             ? styles.dropdownHeaderExpanded
@@ -141,10 +141,6 @@ class Dropdown extends Component<Props, State> {
         const arrowStyle = expanded
             ? styles.dropdownArrowUp
             : styles.dropdownArrowDown;
-
-        const focusedArrowStyle = hasFocus
-            ? styles.dropdownArrowDownFocused
-            : undefined;
 
         const headingStyle = {
             ...styles.dropdownChildren,
@@ -187,16 +183,15 @@ class Dropdown extends Component<Props, State> {
                 >
                     {isLoading && <LoadingIndicator />}
                 </span>
-                <span
-                    className="dropdown-heading-dropdown-arrow"
-                    style={styles.dropdownArrow}
-                >
-                    <span style={{
-                        ...arrowStyle,
-                        ...focusedArrowStyle,
-                    }}
-                    />
-                </span>
+                {arrowRenderer
+                    ? arrowRenderer()
+                    : (<span
+                        className="dropdown-heading-dropdown-arrow"
+                        style={styles.dropdownArrow}
+                    >
+                        <i style={arrowStyle} />
+                    </span>)
+                }
             </div>
             {expanded && this.renderPanel()}
         </div>;
@@ -226,9 +221,7 @@ const styles = {
         width: 0,
         position: 'relative',
     },
-    dropdownArrowDownFocused: {
-        borderColor: `${focusColor} transparent transparent`,
-    },
+    dropdownArrowDownFocused: {},
     dropdownArrowUp: {
         boxSizing: 'border-box',
         top: '-2px',
@@ -246,7 +239,7 @@ const styles = {
         color: '#333',
         left: 0,
         lineHeight: '34px',
-        paddingLeft: 10,
+        paddingLeft: 20,
         paddingRight: 10,
         position: 'absolute',
         right: 0,
@@ -266,18 +259,13 @@ const styles = {
     },
     dropdownHeader: {
         boxSizing: 'border-box',
-        backgroundColor: '#fff',
-        borderColor: '#d9d9d9 #ccc #b3b3b3',
-        borderRadius: 4,
-        borderBottomRightRadius: 4,
-        borderBottomLeftRadius: 4,
-        border: '1px solid #ccc',
-        color: '#333',
+        backgroundColor: '#f6f6f6',
+        color: '#c8c8c8',
         cursor: 'default',
         display: 'table',
         borderSpacing: 0,
         borderCollapse: 'separate',
-        height: 36,
+        height: 42,
         outline: 'none',
         overflow: 'hidden',
         position: 'relative',
