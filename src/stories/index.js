@@ -156,6 +156,7 @@ class StatefulMultiSelect extends Component<SMSProps, SMSState> {
                 disableSearch={disableSearch}
                 filterOptions={filterOptions}
                 overrideStrings={overrideStrings}
+                arrowRenderer={() => <div>foo</div>}
             />
 
             <h2>Selected:</h2>

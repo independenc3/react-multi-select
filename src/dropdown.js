@@ -183,15 +183,13 @@ class Dropdown extends Component<Props, State> {
                 >
                     {isLoading && <LoadingIndicator />}
                 </span>
-                {arrowRenderer
-                    ? arrowRenderer()
-                    : (<span
-                        className="dropdown-heading-dropdown-arrow"
-                        style={styles.dropdownArrow}
-                    >
-                        <i style={arrowStyle} />
-                    </span>)
-                }
+                <span
+                    className="dropdown-heading-dropdown-arrow"
+                    style={styles.dropdownArrow}
+                >
+                    {arrowRenderer ? arrowRenderer() : <i style={arrowStyle} />}
+                </span>
+
             </div>
             {expanded && this.renderPanel()}
         </div>;

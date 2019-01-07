@@ -212,13 +212,13 @@ var Dropdown = function (_Component) {
                         },
                         isLoading && _react2.default.createElement(_loadingIndicator2.default, null)
                     ),
-                    arrowRenderer ? arrowRenderer() : _react2.default.createElement(
+                    _react2.default.createElement(
                         'span',
                         {
                             className: 'dropdown-heading-dropdown-arrow',
                             style: styles.dropdownArrow
                         },
-                        _react2.default.createElement('i', { style: arrowStyle })
+                        arrowRenderer ? arrowRenderer() : _react2.default.createElement('i', { style: arrowStyle })
                     )
                 ),
                 expanded && this.renderPanel()
