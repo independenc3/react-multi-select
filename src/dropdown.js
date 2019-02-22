@@ -8,6 +8,8 @@ import React, {Component} from 'react';
 
 import LoadingIndicator from './loading-indicator.js';
 
+import './styles.css';
+
 type Props = {
     children?: Object,
     contentComponent: Object,
@@ -236,8 +238,8 @@ const styles = {
         bottom: 0,
         color: '#333',
         left: 0,
-        lineHeight: '34px',
-        paddingLeft: 20,
+        lineHeight: '3.15vw',
+        paddingLeft: '1.55vw',
         paddingRight: 10,
         position: 'absolute',
         right: 0,
@@ -256,6 +258,8 @@ const styles = {
         outline: 'none',
     },
     dropdownHeader: {
+        fontSize: '0.85vw',
+        letterSpacing: 2,
         boxSizing: 'border-box',
         backgroundColor: '#f6f6f6',
         color: '#c8c8c8',
@@ -263,7 +267,7 @@ const styles = {
         display: 'table',
         borderSpacing: 0,
         borderCollapse: 'separate',
-        height: 42,
+        height: '3.15vw',
         outline: 'none',
         overflow: 'hidden',
         position: 'relative',
@@ -284,14 +288,10 @@ const styles = {
         width: '16px',
     },
     panelContainer: {
-        borderBottomRightRadius: '4px',
-        borderBottomLeftRadius: '4px',
         backgroundColor: '#fff',
-        border: '1px solid #ccc',
-        borderTopColor: '#e6e6e6',
-        boxShadow: '0 1px 0 rgba(0, 0, 0, 0.06)',
+        boxShadow: '0 3px 8px 0 rgba(0,0,0,0.09)',
         boxSizing: 'border-box',
-        marginTop: '-1px',
+        marginTop: '-3.15vw',
         maxHeight: '300px',
         position: 'absolute',
         top: '100%',

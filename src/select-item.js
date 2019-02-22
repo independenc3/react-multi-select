@@ -36,7 +36,9 @@ class DefaultItemRenderer extends Component<DefaultItemRendererProps> {
                 checked={checked}
                 tabIndex="-1"
                 disabled={disabled}
+                className="checkbox-hidden"
             />
+            <span className="checkbox-icon"/>
             <span style={style}>
                 {option.label}
             </span>
@@ -150,13 +152,17 @@ const styles = {
     itemContainer: {
         boxSizing: 'border-box',
         backgroundColor: '#fff',
-        color: '#666666',
+        color: '#000',
         cursor: 'pointer',
         display: 'block',
-        padding: '8px 10px',
+        fontSize: '0.85vw',
+        padding: '0.85vw 1.55vw',
+        letterSpacing: '2px',
+        fontWeight: '500',
     },
     itemContainerHover: {
-        backgroundColor: '#ebf5ff',
+        backgroundColor: '#1b9aaa',
+        color: '#fff',
         outline: 0,
     },
     label: {
@@ -165,7 +171,7 @@ const styles = {
         borderBottomRightRadius: '2px',
         borderTopRightRadius: '2px',
         cursor: 'default',
-        padding: '2px 5px',
+        padding: '2px 0.75vw',
     },
     labelDisabled: {
         opacity: 0.5,
