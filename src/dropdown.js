@@ -189,7 +189,7 @@ class Dropdown extends Component<Props, State> {
                     className="dropdown-heading-dropdown-arrow"
                     style={styles.dropdownArrow}
                 >
-                    {arrowRenderer ? arrowRenderer() : <i style={arrowStyle} />}
+                    {arrowRenderer ? arrowRenderer(expanded) : <i style={arrowStyle} />}
                 </span>
 
             </div>
@@ -209,6 +209,7 @@ const styles = {
         textAlign: 'center',
         verticalAlign: 'middle',
         width: 25,
+        zIndex: '2',
         paddingRight: 5,
     },
     dropdownArrowDown: {
