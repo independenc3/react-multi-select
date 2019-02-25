@@ -210,7 +210,7 @@ const styles = {
         verticalAlign: 'middle',
         width: 25,
         zIndex: '2',
-        paddingRight: 5,
+        paddingRight: '1.7vw',
     },
     dropdownArrowDown: {
         boxSizing: 'border-box',
