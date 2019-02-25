@@ -8,8 +8,6 @@ import React, {Component} from 'react';
 
 import LoadingIndicator from './loading-indicator.js';
 
-import './styles.css';
-
 type Props = {
     children?: Object,
     contentComponent: Object,
