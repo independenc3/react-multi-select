@@ -161,8 +161,10 @@ var DefaultItemRenderer = function (_Component) {
                     onChange: onClick,
                     checked: checked,
                     tabIndex: "-1",
-                    disabled: disabled
+                    disabled: disabled,
+                    className: "checkbox-hidden"
                 }),
+                _react2.default.createElement("span", { className: "checkbox-icon" }),
                 _react2.default.createElement(
                     "span",
                     { style: style },
@@ -301,13 +303,17 @@ var styles = {
     itemContainer: {
         boxSizing: 'border-box',
         backgroundColor: '#fff',
-        color: '#666666',
+        color: '#000',
         cursor: 'pointer',
         display: 'block',
-        padding: '8px 10px'
+        fontSize: '0.85vw',
+        padding: '0.85vw 1.55vw',
+        letterSpacing: '2px',
+        fontWeight: '500'
     },
     itemContainerHover: {
-        backgroundColor: '#ebf5ff',
+        backgroundColor: '#1b9aaa',
+        color: '#fff',
         outline: 0
     },
     label: {
@@ -316,7 +322,7 @@ var styles = {
         borderBottomRightRadius: '2px',
         borderTopRightRadius: '2px',
         cursor: 'default',
-        padding: '2px 5px'
+        padding: '2px 0.75vw'
     },
     labelDisabled: {
         opacity: 0.5
@@ -550,7 +556,7 @@ var Dropdown = function (_Component) {
                             className: 'dropdown-heading-dropdown-arrow',
                             style: styles.dropdownArrow
                         },
-                        arrowRenderer ? arrowRenderer() : _react2.default.createElement('i', { style: arrowStyle })
+                        arrowRenderer ? arrowRenderer(expanded) : _react2.default.createElement('i', { style: arrowStyle })
                     )
                 ),
                 expanded && this.renderPanel()
@@ -572,7 +578,8 @@ var styles = {
         textAlign: 'center',
         verticalAlign: 'middle',
         width: 25,
-        paddingRight: 5
+        zIndex: '2',
+        paddingRight: '1.7vw'
     },
     dropdownArrowDown: {
         boxSizing: 'border-box',
@@ -601,8 +608,8 @@ var styles = {
         bottom: 0,
         color: '#333',
         left: 0,
-        lineHeight: '34px',
-        paddingLeft: 20,
+        lineHeight: '3.15vw',
+        paddingLeft: '1.55vw',
         paddingRight: 10,
         position: 'absolute',
         right: 0,
@@ -621,6 +628,8 @@ var styles = {
         outline: 'none'
     },
     dropdownHeader: {
+        fontSize: '0.85vw',
+        letterSpacing: 2,
         boxSizing: 'border-box',
         backgroundColor: '#f6f6f6',
         color: '#c8c8c8',
@@ -628,7 +637,7 @@ var styles = {
         display: 'table',
         borderSpacing: 0,
         borderCollapse: 'separate',
-        height: 42,
+        height: '3.15vw',
         outline: 'none',
         overflow: 'hidden',
         position: 'relative',
@@ -649,14 +658,10 @@ var styles = {
         width: '16px'
     },
     panelContainer: {
-        borderBottomRightRadius: '4px',
-        borderBottomLeftRadius: '4px',
         backgroundColor: '#fff',
-        border: '1px solid #ccc',
-        borderTopColor: '#e6e6e6',
-        boxShadow: '0 1px 0 rgba(0, 0, 0, 0.06)',
+        boxShadow: '0 3px 8px 0 rgba(0,0,0,0.09)',
         boxSizing: 'border-box',
-        marginTop: '-1px',
+        marginTop: '-3.15vw',
         maxHeight: '300px',
         position: 'absolute',
         top: '100%',
