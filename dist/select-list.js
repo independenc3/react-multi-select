@@ -82,7 +82,7 @@ var SelectList = function (_Component) {
                     'li',
                     {
                         style: styles.listItem,
-                        key: o.hasOwnProperty("key") ? o.key : i
+                        key: o.hasOwnProperty('key') ? o.key : i
                     },
                     _react2.default.createElement(_selectItem2.default, {
                         focused: focusIndex === i,
@@ -115,10 +115,7 @@ var SelectList = function (_Component) {
         value: function render() {
             return _react2.default.createElement(
                 'ul',
-                {
-                    className: 'select-list',
-                    style: styles.list
-                },
+                { className: 'select-list', style: styles.list },
                 this.renderItems()
             );
         }
