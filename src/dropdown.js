@@ -4,9 +4,9 @@
  * and hosts it in the component.  When the component is selected, it
  * drops-down the contentComponent and applies the contentProps.
  */
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 
-import LoadingIndicator from './loading-indicator.js';
+import LoadingIndicator from './loading-indicator.js'
 
 type Props = {
     children?: Object,
@@ -15,188 +15,192 @@ type Props = {
     isLoading?: boolean,
     disabled?: boolean,
     shouldToggleOnHover?: boolean
-};
+}
 
 type State = {
     expanded: boolean,
     hasFocus: boolean
-};
+}
 
 class Dropdown extends Component<Props, State> {
     state = {
         expanded: false,
-        hasFocus: false,
+        hasFocus: false
     }
 
     componentWillUpdate() {
-        document.addEventListener('touchstart', this.handleDocumentClick);
-        document.addEventListener('mousedown', this.handleDocumentClick);
+        document.addEventListener('touchstart', this.handleDocumentClick)
+        document.addEventListener('mousedown', this.handleDocumentClick)
     }
 
     componentWillUnmount() {
-        document.removeEventListener('touchstart', this.handleDocumentClick);
-        document.removeEventListener('mousedown', this.handleDocumentClick);
+        document.removeEventListener('touchstart', this.handleDocumentClick)
+        document.removeEventListener('mousedown', this.handleDocumentClick)
     }
 
     wrapper: ?Object
 
     handleDocumentClick = (event: Event) => {
         if (this.wrapper && !this.wrapper.contains(event.target)) {
-            this.setState({expanded: false});
+            this.setState({ expanded: false })
         }
     }
 
     handleKeyDown = (e: KeyboardEvent) => {
         switch (e.which) {
             case 27: // Escape
-                this.toggleExpanded(false);
-                break;
+                this.toggleExpanded(false)
+                break
             case 38: // Up Arrow
-                this.toggleExpanded(false);
-                break;
+                this.toggleExpanded(false)
+                break
             case 13: // Enter Key
             case 32: // Space
             case 40: // Down Arrow
-                this.toggleExpanded(true);
-                break;
+                this.toggleExpanded(true)
+                break
             default:
-                return;
+                return
         }
 
-        e.preventDefault();
+        e.preventDefault()
     }
 
-    handleFocus = (e: {target: any}) => {
-        const {hasFocus} = this.state;
+    handleFocus = (e: { target: any }) => {
+        const { hasFocus } = this.state
 
         if (e.target === this.wrapper && !hasFocus) {
-            this.setState({hasFocus: true});
+            this.setState({ hasFocus: true })
         }
     }
 
-    handleBlur = (e: {target: any}) => {
-        const {hasFocus} = this.state;
+    handleBlur = (e: { target: any }) => {
+        const { hasFocus } = this.state
 
         if (hasFocus) {
-            this.setState({hasFocus: false});
+            this.setState({ hasFocus: false })
         }
     }
 
-    handleMouseEnter = (e: {target: any}) => {
-        this.handleHover(true);
+    handleMouseEnter = (e: { target: any }) => {
+        this.handleHover(true)
     }
 
-    handleMouseLeave = (e: {target: any}) => {
-        this.handleHover(false);
+    handleMouseLeave = (e: { target: any }) => {
+        this.handleHover(false)
     }
 
     handleHover = (toggleExpanded: boolean) => {
-        const {shouldToggleOnHover} = this.props;
+        const { shouldToggleOnHover } = this.props
 
         if (shouldToggleOnHover) {
-            this.toggleExpanded(toggleExpanded);
+            this.toggleExpanded(toggleExpanded)
         }
     }
 
     toggleExpanded = (value: ?boolean) => {
-        const {isLoading} = this.props;
-        const {expanded} = this.state;
+        const { isLoading } = this.props
+        const { expanded } = this.state
 
         if (isLoading) {
-            return;
+            return
         }
 
-        const newExpanded = value === undefined ? !expanded : !!value;
+        const newExpanded = value === undefined ? !expanded : !!value
 
-        this.setState({expanded: newExpanded});
+        this.setState({ expanded: newExpanded })
 
         if (!newExpanded && this.wrapper) {
-            this.wrapper.focus();
+            this.wrapper.focus()
         }
     }
 
     renderPanel() {
-        const {contentComponent: ContentComponent, contentProps} = this.props;
+        const { contentComponent: ContentComponent, contentProps } = this.props
 
-        return <div
-            className="dropdown-content"
-            style={styles.panelContainer}
-        >
-            <ContentComponent {...contentProps} />
-        </div>;
+        return (
+            <div className="dropdown-content" style={styles.panelContainer}>
+                <ContentComponent {...contentProps} />
+            </div>
+        )
     }
 
     render() {
-        const {expanded, hasFocus} = this.state;
-        const {children, isLoading, disabled, arrowRenderer} = this.props;
+        const { expanded, hasFocus } = this.state
+        const { children, isLoading, disabled, arrowRenderer } = this.props
 
         const expandedHeaderStyle = expanded
             ? styles.dropdownHeaderExpanded
-            : undefined;
+            : undefined
 
         const focusedHeaderStyle = hasFocus
             ? styles.dropdownHeaderFocused
-            : undefined;
+            : undefined
 
         const arrowStyle = expanded
             ? styles.dropdownArrowUp
-            : styles.dropdownArrowDown;
+            : styles.dropdownArrowDown
 
         const headingStyle = {
             ...styles.dropdownChildren,
-            ...(disabled ? styles.disabledDropdownChildren : {}),
-        };
+            ...(disabled ? styles.disabledDropdownChildren : {})
+        }
 
-        return <div
-            className="dropdown"
-            tabIndex="0"
-            role="combobox"
-            aria-expanded={expanded}
-            aria-readonly="true"
-            aria-disabled={disabled}
-            style={styles.dropdownContainer}
-            ref={ref => this.wrapper = ref}
-            onKeyDown={this.handleKeyDown}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
-            onMouseEnter={this.handleMouseEnter}
-            onMouseLeave={this.handleMouseLeave}
-        >
+        return (
             <div
-                className="dropdown-heading"
-                style={{
-                    ...styles.dropdownHeader,
-                    ...expandedHeaderStyle,
-                    ...focusedHeaderStyle,
-                }}
-                onClick={() => this.toggleExpanded()}
+                className="dropdown"
+                tabIndex="0"
+                role="combobox"
+                aria-expanded={expanded}
+                aria-readonly="true"
+                aria-disabled={disabled}
+                style={styles.dropdownContainer}
+                ref={ref => (this.wrapper = ref)}
+                onKeyDown={this.handleKeyDown}
+                onFocus={this.handleFocus}
+                onBlur={this.handleBlur}
+                onMouseEnter={this.handleMouseEnter}
+                onMouseLeave={this.handleMouseLeave}
             >
-                <span
-                    className="dropdown-heading-value"
-                    style={headingStyle}
+                <div
+                    className="dropdown-heading"
+                    style={{
+                        ...styles.dropdownHeader,
+                        ...expandedHeaderStyle,
+                        ...focusedHeaderStyle
+                    }}
+                    onClick={() => this.toggleExpanded()}
                 >
-                    {children}
-                </span>
-                <span
-                    className="dropdown-heading-loading-container"
-                    style={styles.loadingContainer}
-                >
-                    {isLoading && <LoadingIndicator />}
-                </span>
-                <span
-                    className="dropdown-heading-dropdown-arrow"
-                    style={styles.dropdownArrow}
-                >
-                    {arrowRenderer ? arrowRenderer(expanded) : <i style={arrowStyle} />}
-                </span>
-
+                    <span
+                        className="dropdown-heading-value"
+                        style={headingStyle}
+                    >
+                        {children}
+                    </span>
+                    <span
+                        className="dropdown-heading-loading-container"
+                        style={styles.loadingContainer}
+                    >
+                        {isLoading && <LoadingIndicator />}
+                    </span>
+                    <span
+                        className="dropdown-heading-dropdown-arrow"
+                        style={styles.dropdownArrow}
+                    >
+                        {arrowRenderer ? (
+                            arrowRenderer(expanded)
+                        ) : (
+                            <i style={arrowStyle} />
+                        )}
+                    </span>
+                </div>
+                {expanded && this.renderPanel()}
             </div>
-            {expanded && this.renderPanel()}
-        </div>;
+        )
     }
 }
 
-const focusColor = '#78c008';
+const focusColor = '#78c008'
 
 const styles = {
     dropdownArrow: {
@@ -207,8 +211,7 @@ const styles = {
         textAlign: 'center',
         verticalAlign: 'middle',
         width: 25,
-        zIndex: '2',
-        paddingRight: '1.7vw',
+        zIndex: '2'
     },
     dropdownArrowDown: {
         boxSizing: 'border-box',
@@ -218,7 +221,7 @@ const styles = {
         display: 'inline-block',
         height: 0,
         width: 0,
-        position: 'relative',
+        position: 'relative'
     },
     dropdownArrowDownFocused: {},
     dropdownArrowUp: {
@@ -230,15 +233,13 @@ const styles = {
         display: 'inline-block',
         height: 0,
         width: 0,
-        position: 'relative',
+        position: 'relative'
     },
     dropdownChildren: {
         boxSizing: 'border-box',
         bottom: 0,
         color: '#333',
         left: 0,
-        lineHeight: '3.15vw',
-        paddingLeft: '1.55vw',
         paddingRight: 10,
         position: 'absolute',
         right: 0,
@@ -246,19 +247,17 @@ const styles = {
         maxWidth: '100%',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
+        whiteSpace: 'nowrap'
     },
     disabledDropdownChildren: {
-        opacity: 0.5,
+        opacity: 0.5
     },
     dropdownContainer: {
         position: 'relative',
         boxSizing: 'border-box',
-        outline: 'none',
+        outline: 'none'
     },
     dropdownHeader: {
-        fontSize: '0.85vw',
-        letterSpacing: 2,
         boxSizing: 'border-box',
         backgroundColor: '#f6f6f6',
         color: '#c8c8c8',
@@ -266,38 +265,35 @@ const styles = {
         display: 'table',
         borderSpacing: 0,
         borderCollapse: 'separate',
-        height: '3.15vw',
         outline: 'none',
         overflow: 'hidden',
         position: 'relative',
-        width: '100%',
+        width: '100%'
     },
     dropdownHeaderFocused: {
         borderColor: focusColor,
-        boxShadow: 'none',
+        boxShadow: 'none'
     },
     dropdownHeaderExpanded: {
         borderBottomRightRadius: '0px',
-        borderBottomLeftRadius: '0px',
+        borderBottomLeftRadius: '0px'
     },
     loadingContainer: {
         cursor: 'pointer',
         display: 'table-cell',
         verticalAlign: 'middle',
-        width: '16px',
+        width: '16px'
     },
     panelContainer: {
         backgroundColor: '#fff',
         boxShadow: '0 3px 8px 0 rgba(0,0,0,0.09)',
         boxSizing: 'border-box',
-        marginTop: '-3.15vw',
-        maxHeight: '300px',
         position: 'absolute',
         top: '100%',
         width: '100%',
         zIndex: 1,
-        overflowY: 'auto',
-    },
-};
+        overflowY: 'auto'
+    }
+}
 
-export default Dropdown;
+export default Dropdown

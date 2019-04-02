@@ -2,13 +2,11 @@
 /**
  * This component represents an unadorned list of SelectItem (s).
  */
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 
-import SelectItem from './select-item.js';
+import SelectItem from './select-item.js'
 
-import type {
-    Option,
-} from './select-item.js';
+import type { Option } from './select-item.js'
 
 type Props = {
     focusIndex: number,
@@ -18,25 +16,25 @@ type Props = {
     onSelectedChanged: (selected: any) => void,
     onClick: (event: MouseEvent, index: number) => void,
     disabled?: boolean
-};
+}
 
 class SelectList extends Component<Props> {
     handleSelectionChanged = (option: Option, checked: boolean) => {
-        const {selected, onSelectedChanged, disabled} = this.props;
+        const { selected, onSelectedChanged, disabled } = this.props
 
         if (disabled) {
-            true;
+            true
         }
 
         if (checked) {
-            onSelectedChanged([...selected, option.value]);
+            onSelectedChanged([...selected, option.value])
         } else {
-            const index = selected.indexOf(option.value);
+            const index = selected.indexOf(option.value)
             const removed = [
                 ...selected.slice(0, index),
-                ...selected.slice(index + 1),
-            ];
-            onSelectedChanged(removed);
+                ...selected.slice(index + 1)
+            ]
+            onSelectedChanged(removed)
         }
     }
 
@@ -47,13 +45,13 @@ class SelectList extends Component<Props> {
             selected,
             focusIndex,
             onClick,
-            disabled,
-        } = this.props;
+            disabled
+        } = this.props
 
-        return options.map((o, i) =>
+        return options.map((o, i) => (
             <li
                 style={styles.listItem}
-                key={o.hasOwnProperty("key") ? o.key : i}
+                key={o.hasOwnProperty('key') ? o.key : i}
             >
                 <SelectItem
                     focused={focusIndex === i}
@@ -65,27 +63,26 @@ class SelectList extends Component<Props> {
                     disabled={disabled}
                 />
             </li>
-        );
+        ))
     }
 
     render() {
-        return <ul
-            className="select-list"
-            style={styles.list}
-        >
-            {this.renderItems()}
-        </ul>;
+        return (
+            <ul className="select-list" style={styles.list}>
+                {this.renderItems()}
+            </ul>
+        )
     }
 }
 
 const styles = {
     list: {
         margin: 0,
-        paddingLeft: 0,
+        paddingLeft: 0
     },
     listItem: {
-        listStyle: 'none',
-    },
-};
+        listStyle: 'none'
+    }
+}
 
-export default SelectList;
+export default SelectList

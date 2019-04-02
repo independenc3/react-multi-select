@@ -2,13 +2,13 @@
 /**
  * This component represents an individual item in the multi-select drop-down
  */
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 
 export type Option = {
     value: any,
     label: string,
     key?: string
-};
+}
 
 type DefaultItemRendererProps = {
     checked: boolean,
@@ -16,33 +16,31 @@ type DefaultItemRendererProps = {
     disabled?: boolean,
 
     onClick: (event: MouseEvent) => void
-};
+}
 
 class DefaultItemRenderer extends Component<DefaultItemRendererProps> {
     render() {
-        const {checked, option, onClick, disabled} = this.props;
+        const { checked, option, onClick, disabled } = this.props
 
         const style = {
             ...styles.label,
-            ...(disabled ? styles.labelDisabled : undefined),
-        };
+            ...(disabled ? styles.labelDisabled : undefined)
+        }
 
-        return <span
-            className="item-renderer"
-        >
-            <input
-                type="checkbox"
-                onChange={onClick}
-                checked={checked}
-                tabIndex="-1"
-                disabled={disabled}
-                className="checkbox-hidden"
-            />
-            <span className="checkbox-icon"/>
-            <span style={style}>
-                {option.label}
+        return (
+            <span className="item-renderer">
+                <input
+                    type="checkbox"
+                    onChange={onClick}
+                    checked={checked}
+                    tabIndex="-1"
+                    disabled={disabled}
+                    className="checkbox-hidden"
+                />
+                <span className="checkbox-icon" />
+                <span style={style}>{option.label}</span>
             </span>
-        </span>;
+        )
     }
 }
 
@@ -54,53 +52,53 @@ type SelectItemProps = {
     disabled?: boolean,
     onSelectionChanged: (checked: boolean) => void,
     onClick: (event: MouseEvent) => void
-};
+}
 type SelectItemState = {
     hovered: boolean
-};
+}
 
 class SelectItem extends Component<SelectItemProps, SelectItemState> {
     static defaultProps = {
-        ItemRenderer: DefaultItemRenderer,
+        ItemRenderer: DefaultItemRenderer
     }
 
     state = {
-        hovered: false,
+        hovered: false
     }
 
     componentDidMount() {
-        this.updateFocus();
+        this.updateFocus()
     }
 
     componentDidUpdate() {
-        this.updateFocus();
+        this.updateFocus()
     }
 
     itemRef: ?HTMLElement
 
-    onChecked = (e: {target: {checked: boolean}}) => {
-        const {onSelectionChanged} = this.props;
-        const {checked} = e.target;
+    onChecked = (e: { target: { checked: boolean } }) => {
+        const { onSelectionChanged } = this.props
+        const { checked } = e.target
 
-        onSelectionChanged(checked);
+        onSelectionChanged(checked)
     }
 
     toggleChecked = () => {
-        const {checked, onSelectionChanged} = this.props;
-        onSelectionChanged(!checked);
+        const { checked, onSelectionChanged } = this.props
+        onSelectionChanged(!checked)
     }
 
     handleClick = (e: MouseEvent) => {
-        const {onClick} = this.props;
-        this.toggleChecked();
-        onClick(e);
+        const { onClick } = this.props
+        this.toggleChecked()
+        onClick(e)
     }
 
     updateFocus() {
-        const {focused} = this.props;
+        const { focused } = this.props
 
         if (focused && this.itemRef) {
-            this.itemRef.focus();
+            this.itemRef.focus()
         }
     }
 
@@ -108,45 +106,45 @@ class SelectItem extends Component<SelectItemProps, SelectItemState> {
         switch (e.which) {
             case 13: // Enter
             case 32: // Space
-                this.toggleChecked();
-                break;
+                this.toggleChecked()
+                break
             default:
-                return;
+                return
         }
 
-        e.preventDefault();
+        e.preventDefault()
     }
 
     render() {
-        const {ItemRenderer, option, checked, focused, disabled} = this.props;
-        const {hovered} = this.state;
+        const { ItemRenderer, option, checked, focused, disabled } = this.props
+        const { hovered } = this.state
 
-        const focusStyle = (focused || hovered)
-            ? styles.itemContainerHover
-            : undefined;
+        const focusStyle =
+            focused || hovered ? styles.itemContainerHover : undefined
 
-        return <label
-            className="select-item"
-            role="option"
-            aria-selected={checked}
-            selected={checked}
-            tabIndex="-1"
-            style={{...styles.itemContainer, ...focusStyle}}
-            ref={ref => this.itemRef = ref}
-            onKeyDown={this.handleKeyDown}
-            onMouseOver={() => this.setState({hovered: true})}
-            onMouseOut={() => this.setState({hovered: false})}
-        >
-            <ItemRenderer
-                option={option}
-                checked={checked}
-                onClick={this.handleClick}
-                disabled={disabled}
-            />
-        </label>;
+        return (
+            <label
+                className="select-item"
+                role="option"
+                aria-selected={checked}
+                selected={checked}
+                tabIndex="-1"
+                style={{ ...styles.itemContainer, ...focusStyle }}
+                ref={ref => (this.itemRef = ref)}
+                onKeyDown={this.handleKeyDown}
+                onMouseOver={() => this.setState({ hovered: true })}
+                onMouseOut={() => this.setState({ hovered: false })}
+            >
+                <ItemRenderer
+                    option={option}
+                    checked={checked}
+                    onClick={this.handleClick}
+                    disabled={disabled}
+                />
+            </label>
+        )
     }
 }
-
 
 const styles = {
     itemContainer: {
@@ -154,28 +152,24 @@ const styles = {
         backgroundColor: '#fff',
         color: '#000',
         cursor: 'pointer',
-        display: 'block',
-        fontSize: '0.85vw',
-        padding: '0.85vw 1.55vw',
-        letterSpacing: '2px',
-        fontWeight: '500',
+        display: 'flex',
+        fontWeight: '500'
     },
     itemContainerHover: {
         backgroundColor: '#1b9aaa',
         color: '#fff',
-        outline: 0,
+        outline: 0
     },
     label: {
         display: 'inline-block',
         verticalAlign: 'middle',
         borderBottomRightRadius: '2px',
         borderTopRightRadius: '2px',
-        cursor: 'default',
-        padding: '2px 0.75vw',
+        cursor: 'default'
     },
     labelDisabled: {
-        opacity: 0.5,
-    },
-};
+        opacity: 0.5
+    }
+}
 
-export default SelectItem;
+export default SelectItem
