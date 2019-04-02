@@ -138,10 +138,7 @@ var Dropdown = function (_Component) {
 
             return _react2.default.createElement(
                 'div',
-                {
-                    className: 'dropdown-content',
-                    style: styles.panelContainer
-                },
+                { className: 'dropdown-content', style: styles.panelContainer },
                 _react2.default.createElement(ContentComponent, contentProps)
             );
         }
@@ -240,8 +237,7 @@ var styles = {
         textAlign: 'center',
         verticalAlign: 'middle',
         width: 25,
-        zIndex: '2',
-        paddingRight: '1.7vw'
+        zIndex: '2'
     },
     dropdownArrowDown: {
         boxSizing: 'border-box',
@@ -270,8 +266,6 @@ var styles = {
         bottom: 0,
         color: '#333',
         left: 0,
-        lineHeight: '3.15vw',
-        paddingLeft: '1.55vw',
         paddingRight: 10,
         position: 'absolute',
         right: 0,
@@ -290,8 +284,6 @@ var styles = {
         outline: 'none'
     },
     dropdownHeader: {
-        fontSize: '0.85vw',
-        letterSpacing: 2,
         boxSizing: 'border-box',
         backgroundColor: '#f6f6f6',
         color: '#c8c8c8',
@@ -299,7 +291,6 @@ var styles = {
         display: 'table',
         borderSpacing: 0,
         borderCollapse: 'separate',
-        height: '3.15vw',
         outline: 'none',
         overflow: 'hidden',
         position: 'relative',
@@ -323,8 +314,6 @@ var styles = {
         backgroundColor: '#fff',
         boxShadow: '0 3px 8px 0 rgba(0,0,0,0.09)',
         boxSizing: 'border-box',
-        marginTop: '-3.15vw',
-        maxHeight: '300px',
         position: 'absolute',
         top: '100%',
         width: '100%',

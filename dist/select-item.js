@@ -47,9 +47,7 @@ var DefaultItemRenderer = function (_Component) {
 
             return _react2.default.createElement(
                 "span",
-                {
-                    className: "item-renderer"
-                },
+                { className: "item-renderer" },
                 _react2.default.createElement("input", {
                     type: "checkbox",
                     onChange: onClick,
@@ -199,10 +197,7 @@ var styles = {
         backgroundColor: '#fff',
         color: '#000',
         cursor: 'pointer',
-        display: 'block',
-        fontSize: '0.85vw',
-        padding: '0.85vw 1.55vw',
-        letterSpacing: '2px',
+        display: 'flex',
         fontWeight: '500'
     },
     itemContainerHover: {
@@ -215,8 +210,7 @@ var styles = {
         verticalAlign: 'middle',
         borderBottomRightRadius: '2px',
         borderTopRightRadius: '2px',
-        cursor: 'default',
-        padding: '2px 0.75vw'
+        cursor: 'default'
     },
     labelDisabled: {
         opacity: 0.5

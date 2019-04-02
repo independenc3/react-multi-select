@@ -153,9 +153,7 @@ var DefaultItemRenderer = function (_Component) {
 
             return _react2.default.createElement(
                 "span",
-                {
-                    className: "item-renderer"
-                },
+                { className: "item-renderer" },
                 _react2.default.createElement("input", {
                     type: "checkbox",
                     onChange: onClick,
@@ -305,10 +303,7 @@ var styles = {
         backgroundColor: '#fff',
         color: '#000',
         cursor: 'pointer',
-        display: 'block',
-        fontSize: '0.85vw',
-        padding: '0.85vw 1.55vw',
-        letterSpacing: '2px',
+        display: 'flex',
         fontWeight: '500'
     },
     itemContainerHover: {
@@ -321,8 +316,7 @@ var styles = {
         verticalAlign: 'middle',
         borderBottomRightRadius: '2px',
         borderTopRightRadius: '2px',
-        cursor: 'default',
-        padding: '2px 0.75vw'
+        cursor: 'default'
     },
     labelDisabled: {
         opacity: 0.5
@@ -476,10 +470,7 @@ var Dropdown = function (_Component) {
 
             return _react2.default.createElement(
                 'div',
-                {
-                    className: 'dropdown-content',
-                    style: styles.panelContainer
-                },
+                { className: 'dropdown-content', style: styles.panelContainer },
                 _react2.default.createElement(ContentComponent, contentProps)
             );
         }
@@ -578,8 +569,7 @@ var styles = {
         textAlign: 'center',
         verticalAlign: 'middle',
         width: 25,
-        zIndex: '2',
-        paddingRight: '1.7vw'
+        zIndex: '2'
     },
     dropdownArrowDown: {
         boxSizing: 'border-box',
@@ -608,8 +598,6 @@ var styles = {
         bottom: 0,
         color: '#333',
         left: 0,
-        lineHeight: '3.15vw',
-        paddingLeft: '1.55vw',
         paddingRight: 10,
         position: 'absolute',
         right: 0,
@@ -628,8 +616,6 @@ var styles = {
         outline: 'none'
     },
     dropdownHeader: {
-        fontSize: '0.85vw',
-        letterSpacing: 2,
         boxSizing: 'border-box',
         backgroundColor: '#f6f6f6',
         color: '#c8c8c8',
@@ -637,7 +623,6 @@ var styles = {
         display: 'table',
         borderSpacing: 0,
         borderCollapse: 'separate',
-        height: '3.15vw',
         outline: 'none',
         overflow: 'hidden',
         position: 'relative',
@@ -661,8 +646,6 @@ var styles = {
         backgroundColor: '#fff',
         boxShadow: '0 3px 8px 0 rgba(0,0,0,0.09)',
         boxSizing: 'border-box',
-        marginTop: '-3.15vw',
-        maxHeight: '300px',
         position: 'absolute',
         top: '100%',
         width: '100%',
@@ -736,7 +719,7 @@ var SelectPanel = function (_Component) {
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SelectPanel.__proto__ || Object.getPrototypeOf(SelectPanel)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
             searchHasFocus: false,
-            searchText: "",
+            searchText: '',
             focusIndex: 0
         }, _this.selectAll = function () {
             var _this$props = _this.props,
@@ -767,7 +750,7 @@ var SelectPanel = function (_Component) {
         }, _this.handleItemClicked = function (index) {
             _this.setState({ focusIndex: index });
         }, _this.clearSearch = function () {
-            _this.setState({ searchText: "" });
+            _this.setState({ searchText: '' });
         }, _this.handleKeyDown = function (e) {
             switch (e.which) {
                 case 38:
@@ -851,8 +834,8 @@ var SelectPanel = function (_Component) {
 
 
             var selectAllOption = {
-                label: selectAllLabel || (0, _getString2.default)("selectAll", overrideStrings),
-                value: ""
+                label: selectAllLabel || (0, _getString2.default)('selectAll', overrideStrings),
+                value: ''
             };
 
             var focusedSearchStyle = searchHasFocus ? styles.searchFocused : undefined;
@@ -869,7 +852,7 @@ var SelectPanel = function (_Component) {
                     'div',
                     { style: styles.searchContainer },
                     _react2.default.createElement('input', {
-                        placeholder: (0, _getString2.default)("search", overrideStrings),
+                        placeholder: (0, _getString2.default)('search', overrideStrings),
                         type: 'text',
                         onChange: this.handleSearchChange,
                         style: _extends({}, styles.search, focusedSearchStyle),
@@ -913,27 +896,25 @@ var styles = {
         boxSizing: 'border-box'
     },
     search: {
-        display: "block",
-
-        maxWidth: "100%",
-        borderRadius: "3px",
-
+        display: 'block',
+        maxWidth: '100%',
+        borderRadius: '3px',
         boxSizing: 'border-box',
         height: '30px',
         lineHeight: '24px',
         border: '1px solid',
         borderColor: '#dee2e4',
         padding: '10px',
-        width: "100%",
-        outline: "none"
+        width: '100%',
+        outline: 'none'
     },
     searchFocused: {
-        borderColor: "#78c008"
+        borderColor: '#78c008'
     },
     searchContainer: {
-        width: "100%",
+        width: '100%',
         boxSizing: 'border-box',
-        padding: "0.5em"
+        padding: '0.5em'
     }
 };
 
@@ -1348,7 +1329,7 @@ var SelectList = function (_Component) {
                     'li',
                     {
                         style: styles.listItem,
-                        key: o.hasOwnProperty("key") ? o.key : i
+                        key: o.hasOwnProperty('key') ? o.key : i
                     },
                     _react2.default.createElement(_selectItem2.default, {
                         focused: focusIndex === i,
@@ -1381,10 +1362,7 @@ var SelectList = function (_Component) {
         value: function render() {
             return _react2.default.createElement(
                 'ul',
-                {
-                    className: 'select-list',
-                    style: styles.list
-                },
+                { className: 'select-list', style: styles.list },
                 this.renderItems()
             );
         }

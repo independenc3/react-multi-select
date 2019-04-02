@@ -56,7 +56,7 @@ var SelectPanel = function (_Component) {
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SelectPanel.__proto__ || Object.getPrototypeOf(SelectPanel)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
             searchHasFocus: false,
-            searchText: "",
+            searchText: '',
             focusIndex: 0
         }, _this.selectAll = function () {
             var _this$props = _this.props,
@@ -87,7 +87,7 @@ var SelectPanel = function (_Component) {
         }, _this.handleItemClicked = function (index) {
             _this.setState({ focusIndex: index });
         }, _this.clearSearch = function () {
-            _this.setState({ searchText: "" });
+            _this.setState({ searchText: '' });
         }, _this.handleKeyDown = function (e) {
             switch (e.which) {
                 case 38:
@@ -171,8 +171,8 @@ var SelectPanel = function (_Component) {
 
 
             var selectAllOption = {
-                label: selectAllLabel || (0, _getString2.default)("selectAll", overrideStrings),
-                value: ""
+                label: selectAllLabel || (0, _getString2.default)('selectAll', overrideStrings),
+                value: ''
             };
 
             var focusedSearchStyle = searchHasFocus ? styles.searchFocused : undefined;
@@ -189,7 +189,7 @@ var SelectPanel = function (_Component) {
                     'div',
                     { style: styles.searchContainer },
                     _react2.default.createElement('input', {
-                        placeholder: (0, _getString2.default)("search", overrideStrings),
+                        placeholder: (0, _getString2.default)('search', overrideStrings),
                         type: 'text',
                         onChange: this.handleSearchChange,
                         style: _extends({}, styles.search, focusedSearchStyle),
@@ -233,27 +233,25 @@ var styles = {
         boxSizing: 'border-box'
     },
     search: {
-        display: "block",
-
-        maxWidth: "100%",
-        borderRadius: "3px",
-
+        display: 'block',
+        maxWidth: '100%',
+        borderRadius: '3px',
         boxSizing: 'border-box',
         height: '30px',
         lineHeight: '24px',
         border: '1px solid',
         borderColor: '#dee2e4',
         padding: '10px',
-        width: "100%",
-        outline: "none"
+        width: '100%',
+        outline: 'none'
     },
     searchFocused: {
-        borderColor: "#78c008"
+        borderColor: '#78c008'
     },
     searchContainer: {
-        width: "100%",
+        width: '100%',
         boxSizing: 'border-box',
-        padding: "0.5em"
+        padding: '0.5em'
     }
 };
 
